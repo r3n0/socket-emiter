@@ -19,10 +19,10 @@ function draw() {
   text("Mueve el mouse para enviar datos", 10, 20);
   
   // Mapeamos la posición X (0-400) a un ángulo (0-180)
-  let angulo = floor(map(mouseX, 0, width, 0, 180));
+  let valor = floor(map(mouseX, 0, width, 0, 180));
   
   // Solo enviamos si el mouse está dentro del lienzo
   if (mouseX > 0 && mouseX < width) {
-    socket.emit('send-angle', { channel: canal, angle: angulo });
+    socket.emit('send-value', { channel: canal, value: valor });
   }
 }
