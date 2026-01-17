@@ -5,8 +5,8 @@ function setup() {
 	createCanvas(400, 400);
 
 	socket = io('https://telepresencia.art', {
-		transports: ['polling'], // <--- FORZAMOS a que NO use WebSockets
-		upgrade: false, // <--- Prohibimos que intente subir a WebSocket
+		path: '/datos-v1/', // <--- MUY IMPORTANTE: debe coincidir exactamente
+		transports: ['polling'], // Seguimos con polling para mayor seguridad ante el firewall
 	});
 
 	// Añade esto para debuggear en la consola de p5.js
