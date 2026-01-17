@@ -4,8 +4,15 @@ let canal = 'canal-11'; // Elige el nombre que quieras
 function setup() {
 	createCanvas(400, 400);
 
-	// Conectamos con tu IP y el puerto 3000
-	socket = io('http://206.189.168.40:3000', { transports: ['websocket'] });
+	socket = io('https://telepresencia.art', {
+		transports: ['polling'], // <--- FORZAMOS a que NO use WebSockets
+		upgrade: false, // <--- Prohibimos que intente subir a WebSocket
+	});
+
+	// Añade esto para debuggear en la consola de p5.js
+	socket.on('connect_error', (err) => {
+		console.log('Error de conexión detallado:', err.message);
+	});
 
 	// Al conectarnos, nos unimos al canal
 	socket.on('connect', () => {
