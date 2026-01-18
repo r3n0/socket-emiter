@@ -1,11 +1,14 @@
 let socket;
-let canal = 'canal-11'; // Elige el nombre que quieras
+let canal = 'canal-1'; // Elige el nombre que quieras
 
 function setup() {
-	createCanvas(400, 400);
+	createCanvas(800, 600);
 
-	socket = io('http://localhost:3000', {
-		transports: ['websocket'],
+
+	socket = io('http://10.0.0.101:3000', {
+		// Eliminamos la restricción de solo websocket para mayor compatibilidad
+		transports: ['polling', 'websocket'],
+		reconnection: true
 	});
 
 	// Añade esto para debuggear en la consola de p5.js
